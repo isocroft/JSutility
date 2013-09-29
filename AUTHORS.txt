@@ -1,0 +1,14 @@
+{JSutil-0.8-beta for all browsers}
+
+{Script Developers : CodeDev Team} {http://cproscodedev.com.ng}
+
+Members of the Team::
+
+- Ifeora Okechukwu - @isocroft 
+  Emmy Steven - @emmy_steve
+
+Many Thanks To::
+
+- John Resig - [for his clever hash identifier for event handler functions]
+- Eirick Backer - [for the marvelous idea to hack the "createElement" method]
+- Dustin Diaz - [for that cute little code thingy called - "Qwery"]
