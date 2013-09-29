@@ -1,11 +1,10 @@
 
-
   {
 
  "filename": "jsutil-0.8-beta" ,
 
  "description": {"short": "provides polyfill functionality for all browsers!!!", 
-                 "long": "provides a way to safely use W3C recommended code for any browser of your choice and get the same results everytime!!!"} 
+                 "long": "provides a way to safely use W3C recommended code for any browser of your choice and get the same results everytime!!!"} , 
 
  "version": "0.8" ,
 
@@ -21,7 +20,7 @@
  
  "date of release": "09-02-13" ,
  
- "dependencies" : "none"
+ "dependencies" : "none" ,
  
  "final remarks": "we need your positive feedback and/or criticisms"
 
