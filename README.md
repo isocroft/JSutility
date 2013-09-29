@@ -7,11 +7,11 @@ A simple JavaScript polyfill library that adds missing functionality in non-HTML
 
 ## Documentation and Demos
 
-Please see the [README.rpp file for proper documentation] or (http://www.cproscodedev.com.ng/docs/) where you will find full explanations on how to use the API features and plenty of examples to get you started.
+Please see the [README.rpp file for proper documentation] or (http://www.cproscodedev.com.ng/projects/js/JSutility/docs) where you will find full explanations on how to use the API features and plenty of examples to get you started.
 
 ## Download
 
-Get the Download at (http://www.cproscodedev.com.ng)
+Get the Download at (http://www.cproscodedev.com.ng/projects/js/JSutility)
 
 ## Recently added features
 
@@ -20,7 +20,11 @@ Get the Download at (http://www.cproscodedev.com.ng)
 
 # Caveats
 
-Please see the [RELEASE NOTE.rpp for a list of caveats] in the  in the download package 
+Please see the [RELEASE NOTE.rpp for a list of caveats] in the  in the download package
+
+# License
+
+The JSutility polyfill library is licensed under GPL version 2
 
 ## Next Release
 
