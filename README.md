@@ -13,7 +13,7 @@ Please see the [README.rpp file for proper documentation] or (http://www.cprosco
 
 Get the Download at (http://www.cproscodedev.com.ng/projects/js/JSutility)
 
-## Recently added features
+## Features
 
 - v0.8 : Support for classList methods and other fundermental methods e.g querySelectorAll
 - v1.0 : Support for window.JSON.parse and window.JSON.stringyfy among others
