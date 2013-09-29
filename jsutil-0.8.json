@@ -1,6 +1,5 @@
 
 
-
   {
 
  "filename": "jsutil-0.8-beta" ,
@@ -13,12 +12,12 @@
  "author": ["Ifeora Okechukwu" , "Emmy Steven"] ,
  
  "indirect contributors" : ["John Resig >> (http://ejohn.org)",
-                            "Eirick Backer >> (http://)",
-							"Dustin Diaz >> (http://dustindiaz.com)"] ,
+                            "Eirick Backer >> (http://kirie.no)",
+			    "Dustin Diaz >> (http://dustindiaz.com)"] ,
 
  "license": "GPL" ,
  
- "code-type": "open source" ,
+ "release-type": "open source" ,
  
  "date of release": "09-02-13" ,
  
