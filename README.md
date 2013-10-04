@@ -20,7 +20,11 @@ Get the Download at (http://www.cproscodedev.com.ng/projects/js/JSutility)
 
 # Caveats
 
-Please see the [RELEASE NOTE.rpp for a list of caveats] in the  in the download package
+Please see the [README.rpp for a list of caveats]  in the download package (master.zip)
+
+# Change Logs
+
+View the change log for info on how JSutility was built...
 
 # License
 
