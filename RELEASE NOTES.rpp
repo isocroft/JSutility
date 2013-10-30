@@ -2,25 +2,17 @@
  KNOWN ISSUES WITH THIS VERSION OF jsutil LIBRARY 
 -- ## These issues will be fixed progressively in subsequent versions. ---------------------------------------------------
 
-1. The patch [removeEventListener] method does not implement capture for the DOM yet-
+1. The patch [addEventListener]/[removeEventListener] method does not implement capture for the DOM yet-
 
-2. The patch [removeEventListener] method does not correctly dispatch event handler function yet-
+2. The patch [addEventListener]/[removeEventListener] method does not correctly dispatch event handler function yet-
 
-3. The patch [classList] object is not consistent with the native implementation... it is implemented as a function-
-
-4. The patch [find] method is not fully compatible as with native implementation-
-
-5. The patch [Object.defineProperty] generic method is not fully compatible as with native implementation-
-
-6. The patch [innerText] property has a buggy implementation and cannot be trusted for now on mozilla/gecko browsers-
-
-7. The patch [JSON.parse] and [JSON.stringify] methods are not fully compatible as with native implementation-
+3. The patch [Object.defineProperty] generic method is not fully compatible as with native implementation-
 
 --------------------------------------------------------------------------------------------------------------------------
  COMPATIBILITY NOTE 
 -- ## This library is fully compatible with the following browsers -------------------------------------------------------
 
-Firefox 3.1+ , Safari 2.0+, Opera 3.0+, Internet Explorer 5.0+, Chrome 3.0+, Flock 4.0+.
+Firefox 3.1+ , Safari 2.0+, Opera 3.0+, Internet Explorer 5.0+, Chrome 2.0+, Flock 4.0+.
 NOTE: The '+' means 'and above' 
 
 --------------------------------------------------------------------------------------------------------------------------
@@ -57,7 +49,43 @@ NOTE: The '+' means 'and above'
 
    12-01-2013    09:09:18PM    fixed 'querySelectorAll' method with [Qwery]       jsutil::001245
 
-   09-02-2013    01:15:10PM    first beta version release [0.8] !!!!              jsutil::001245
+   09-02-2013    01:15:10PM    first sub release for general testing [0.8-beta]   jsutil::001245
+
+   08-03-2013    05:40:12PM    fixed issues with 'classList' implementation       jsutil::001246                    
+             
+   13-03-2013    01:52:01AM    fixed bug with 'insertAdjacentHTML' method         jsutil::001246 
+
+   20-03-2013    07:07:11AM    added 'insertAdjacentText' method                  jsutil::001247
+
+   03-04-2013    12:02:12PM    added 'getParents' method                          jsutil::001248
+
+   04-04-2013    03:50:21PM    added 'wrapElement' method                         jsutil::001249
+
+   11-04-2013    11:01:45PM    deprecated and removed 'hasClass' method           jsutil::001250
+
+   11-04-2013    12:10:04PM    added 'document.unsetCookie' method                jsutil::001251
+
+   15-04-2013    02:33:03PM    added 'window.JSON.parse' method                   jsutil::001252
+
+   17-04-2013    11:50:17AM    added 'window.JSON.stringify' method               jsutil::001253
+
+   10-05-2013    01:03:07PM    added 'document.hasSmoothing' method               jsutil::001254
+
+   25-05-2013    12:12:22PM    improved functionality for 'addCSSRules' method    jsutil::001255                   
+                     
+   26-05-2013    10:08:42AM    added 'getSiblings' method                         Jsutil::001256
+
+   29-05-2013    02:01:27PM    added 'document.cancelContextMenu' method          jsutil::001256
+
+   03-06-2013    11:38:35PM    added 'document.filterElements' method             jsutil::001257
+                                                   
+   13-06-2013    03:45:56PM    intense code refactoring and testing ++            jsutil::001257
+   
+   17-06-2013    02:01:33PM    added 'nextElement' method                         jsutil::001258
+                 
+   26-06-2013    12:12:22AM    added 'previousElement' method                     jsutil::001259
+
+   17-09-2013    02:45:02PM    second beta release [1.0-beta]- Yepeee!!!!!        jsutil::001260
    
 ------------------------------------------------------------------------------------------------------------------------
  JS LIBRARY SUPPORT        
@@ -70,8 +98,10 @@ NOTE: The '+' means 'and above'
  EXTRAS
 -------------------------------------------------------------------------------------------------------------------------
 
-    + Expect the next version - jsutil-1.0-beta.js - to solve some of these issues permanently -
+  + Expect the next version - jsutil-1.5-beta.js - to solve all of these issues permanently -
 
-    + Additions will also be made to the upcoming version -
+  + jsutil-2.0-beta.js will also feature its own CSS Selector Engine - [Antor] - (We just borrowed [Qwery] for a while) 
 
-    + The release date for - jsutil-1.0-beta.js - will be 17-09-2013 -  
+  + The release date for - jsutil-1.5-beta.js - will be 12-08-2014 - 
+  
+------------------------------------------------------------------------------------------------------------------------  
