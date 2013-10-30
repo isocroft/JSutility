@@ -1,66 +1,86 @@
-Copyright 2012 @abnlabs This library is released under the GPL License http://www.opensource.org/licenses/GPL-2.0.php
-Release Date: 09/02/2012
-JavaScript API's contained in this library (JSutil-0.8-beta.js) 
+Copyright 2013 @abnlabs This library is released under the GPL License http://www.opensource.org/licenses/GPL-2.0.php
+Release Date: 17/09/2013
+JavaScript API's contained in this library (JSutil-1.0-beta.js) 
 --------------------------------------------------------------------------------------------------------------------
 +   Object     +        Methods       +       Parameters       +      Target Browsers   +
 --------------------------------------------------------------------------------------------------------------------
 
 ::[{Prototypes}]
 
-String                trim                        none               Moz2.0,(Chrm1-4),IE6.0+,(Opera5-9),Saf2.0+ Element             emptyElement                  none               Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+  Element            isElementEmpty                 none               Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+ 
-Element            setElementText                   2                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+  
-Element             addCSSRules                  multiple            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Element             isParentTo                      1                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Element            removeElement                    1                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Document           querySelectorAll                 2                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Document            handleQuery                     2                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Document             ajaxGET                        3                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Document             ajaxPOST                       4                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Document             setCookie                      5                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Document            readCookie                      1                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Array               emptyArray                      1                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-String              Capitalize                    none               Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-(#)Document      addEventListener                   3                IE6-8,(Opera5-7)
-(#)Element       addEventListener                   3                IE6-8,(Opera5-7)
-(#)Element        insertAdjacentHTML                1                Opera5-6
-(#)Element       emoveEventListener                 3                IE6-8,(Opera5-7)
-Array                setIndex                       2                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Array               isContained                     1                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-String               trimLeft                     none               Moz2.0,Chrm1-4,IE6.0+,(Opera5-11),Saf2.0+
-String               trimRight                    none               Moz2.0,Chrm1-4,IE6.0+,(Opera5-11),Saf2.0+
-Array                 indexOf                       1                IE6.0+,(Opera7-8)
-String               insertStr                      2                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Element               hasClass                      1                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Element               hasStyle                      1                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Window             addEventListener                 3                IE6-8
-Window             getSelectionText               none               Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Window             showModalDialog                  3                Opera5-6  
-(#)Element            classList                   none               IE6-8
-(#)Window              find                         3                IE6-8,(Opera5-11)  
-Document         getElementsByClassName             1                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Element             insertAfter                     2                Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
-Function               bind                         2                IE6-8  
-Array                 reduce                        2                Moz2.0,(Chrm1-3),Saf2.0,Opera(5-9),(IE6-8) 
-Array               reduceRight                     2                Moz2.0,(Chrm1-3),Saf2.0,Opera(5-9),(IE6-8)
-Array               lastIndexOf                     2                IE6.0+,(Opera7-8)
-Array                 every                         1                IE6-8,(Opera7-8)
-Array                 filter                        1                IE6-8,(Opera7-8)
-Array                forEach                        1                IE6-8,(Opera7-8)
-Array                 some                          1                IE6-8,(Opera7-8)
-Array                 map                           1                IE6-8,(Opera7-8)
-Array                Truncate                      none              Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+   
+String                trim                        none           Moz2.0,(Chrm1-4),IE6.0+,(Opera5-9),Saf2.0+ 
+Element             emptyElement                  none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+  
+Element            isElementEmpty                 none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+ 
+Element            setElementText                   2            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+  
+Element             addCSSRules                  multiple        Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element             getParents                    none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element             isParentTo                      1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element             getSiblings                   none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element            removeElement                    1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document           querySelectorAll                 2            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document            handleQuery                     2            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document             ajaxGET                        3            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document           filterElements                   3            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document            hasSmoothing                  none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document             ajaxPOST                       4            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document            unsetCookie                     1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document             setCookie                      5            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Document            readCookie                      1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Array               emptyArray                      1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Object                unique                      none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+String              Capitalize                    none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+(#)Document      addEventListener                   3            IE6-8,(Opera5-7)
+(#)Element       addEventListener                   3            IE6-8,(Opera5-7)
+(#)Element      removeEventListener                 3            IE6-8,(Opera5-7)
+Array                setIndex                       2            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Array               isContained                     1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+String               trimLeft                     none           Moz2.0,Chrm1-4,IE6.0+,(Opera5-11),Saf2.0+
+String               trimRight                    none           Moz2.0,Chrm1-4,IE6.0+,(Opera5-11),Saf2.0+
+Array                 indexOf                       1            IE6.0+,(Opera7-8)
+String               insertStr                      2            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+(%)Element           hasClass                       1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element               hasStyle                      1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element           insertAdjacentHTML                1            Moz2-3,Opera5-6
+Element           insertAdjacentText                1            Moz1.0+
+(#)Window          addEventListener                 3            IE6-8
+(#)Window        removeEventListener                3            IE6-8
+Window             getSelectionText               none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Window             showModalDialog                  3            Opera5-6  
+Element             classList.add                   1            IE6-8
+Element             classList.remove                1            IE6-8
+Element             classList.toggle                1            IE6-8
+Element             classList.contains              1            IE6-8
+Element             classList.item                  1            IE6-8
+(#)Window              find                         3            IE6-8,(Opera5-11)  
+Document         getElementsByClassName             1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element             insertAfter                     2            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element             nextElement                   none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element            previousElement                none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Element             wrapElement                     1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Function               bind                         2            IE6-8  
+Function             addMethod                    none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Function            addProperty                   none           Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Array                 reduce                        2            Moz2.0,(Chrm1-3),Saf2.0,Opera(5-9),(IE6-8) 
+Array               reduceRight                     2            Moz2.0,(Chrm1-3),Saf2.0,Opera(5-9),(IE6-8)
+Array               lastIndexOf                     2            IE6.0+,(Opera7-8)
+Array                 every                         1            IE6-8,(Opera7-8)
+Array                 filter                        1            IE6-8,(Opera7-8)
+Array                forEach                        1            IE6-8,(Opera7-8)
+Array                 some                          1            IE6-8,(Opera7-8)
+Array                 map                           1            IE6-8,(Opera7-8)
+Array                 assoc                         1            Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+
+Array                Truncate                      none          Moz2.0+,Chrm1.0+,IE6.0+,Opera5.0+,Saf2.0+   
 
 
 ::[{Generics}]
 
-String              replace                         3                Chrm1.0+,IE6.0+,Opera7.0+,Saf3.0+
-Array               isArray                       none               (Moz2-3),(chrm6).(IE6-8),(Opera5-9)
-Array               filter                          2                Chrm1.0+,IE6.0+,Opera7.0+,Saf3.0+  
-Object               keys                           1                (IE6-8)
-(*)Object          defineProperty                   3                (Moz2-3),(IE6-8),(Chrm1-4),(Saf3-4)
-Object              create                          2                (IE6-8)
-
-
+String              replace                         3            Chrm1.0+,IE6.0+,Opera7.0+,Saf3.0+
+Array               isArray                       none           (Moz2-3),(chrm6).(IE6-8),(Opera5-9)
+Array               filter                          2            Chrm1.0+,IE6.0+,Opera7.0+,Saf3.0+  
+Object               keys                           1            (IE6-8)
+(*)Object          defineProperty                   3            (Moz2-3),(IE6-8),(Chrm1-4),(Saf3-4)
+Object              create                          2            (IE6-8)
+Window             JSON.parse                       2            (IE6-7)
+Window             JSON.stringify                   1            (IE6-7)
 
 
 [{::KEY::}]
@@ -73,16 +93,20 @@ Object              create                          2                (IE6-8)
 [{::HOW TO USE THIS LIBRARY::}]
 
 1. Simply link this library as you would any other e.g "jQuery", "YUI" or "Prototype" ...in the head section of your HTML page - It is adviced you use the minified version [Note: the unminified version is majorly for developers]
-[Very Important: Always include jsutil library before any other library like "JQuery" in order to avoid conflict!!!]
+[Very Important: Always include JSutil library before any other library like "JQuery" in order to avoid conflict!!!]
    
- - <script type='text/javascript' src='../js/JSutil-0.8-beta.min.js'></script>
+ - <script type='text/javascript' src='../js/JSutil-1.0-beta.min.js'></script>
  
 
 2. Finally, use the available API as much as you want... works for both your internal and external scripts
 
    //using the 'addCSSRules' method
- 
- - document.getElementById("gallery").addCSSRules(['color','#66efac','moz-border-radius','4px','display','block']);
+   
+ - document.getElementById("gallery").addCSSRules(['colr','#66efac','moz-border-raduis','4px','display','block']);   
+      OR
+ - document.getElementById("gallery").addCSSRules({color:"#66efac",moz-border-radius:"4px",display:"block"});
+      OR
+ - document.getElementById("inbloc").addCSSRules({color:function(o){if(o.getParents("body").getAttribute("class").indexOf("yes-moz") > -1){ return '#35ee21'}else{ return '#3c3c3c'} }, border:'1px solid #555555'});
 
    //using the 'Capitalize' method
 
@@ -92,57 +116,44 @@ Object              create                          2                (IE6-8)
 
    //using the 'removeElement' method
 
- - var element = document.getElementById("box").removeElement(true); // assume 'element' has 2 child elements
+ - var element = document.getElementById("box").removeElement(true);
 
-   element.setElementText("Hello World!", 1) // using the 'setElementText' method to set text on the second child
+  //using the 'classList.contains' method
 
-   document.documentElement.children.item(1).appendChild(element);
-
-  //using the 'hasClass' method
-
- - var ans = document.getElementsByTagName("html")[0].hasClass("no-js");
+ - var ans = document.getElementsByTagName("html")[0].classList.contains("no-js");
 
  - if(!ans){
-      document.write("<scr"+"ipt type='text/javascript' src='modernizr.js'>"+"</sc"+"ript>");
+      document.write("<scr"+"ipt type='text/javascript' src='modernizr.js'>"+"</script>");
    }
 
   //using the 'handleQuery' method
 
  - var get = document.handleQuery("case-id", document.URL.search);
+ 
+  //using the 'JSON.stringify' method
 
-  //using the 'readCookie' method
+- var objt = window.JSON.stringify({flags:[true,false,true],index:20}, null, 2); 
 
- - var c_val = document.readCookie("visit_id");
-
- //using the 'ajaxGET' method 
-
- - document.ajaxGET("http://localhost/sendsafe/assets/getData.php", function(data){
-         if(data.done){
-            document.getElementsByClassName("img_dope")[0].innerHTML = data.text + "  " + data.status;
-         }
-   }, false); 
-
- // using the 'querySelectorAll' method
-
- - var txtArr = [], r_nodes = document.querySelectorAll("div#curtext p span.box");
-    
-   for(var i=0;i < r_nodes.length;i++){
-     if(r_nodes.nodeType == 1) continue; // skip element node types
-     if(r_nodes[i].nodeType == 3) txtArr.push(r_nodes[i].firstChild.data);          
-   }
-
- // using the 'insertAfter' method
-
- - var baser = document.getElementsByName("checker")[1];
-
-   var elem = document.getElementById("widgpack").removeElement(true);
-
-   baser.insertAfter(elem, baser.children.namedItem("tokval"));
-
-
-   ... and many more
+   // using the 'classList' property
    
+- document.getElementsByClassName("joker").classList.add("base");   
+
 ------------------------------------------------------------------------------------------------------------------------
-                     THANKS FOR CHOOSING TO TRY JSutil-0.8-beta.js!! DONT FORGET TO REPORT ANY BUGS
+[{::CAVEATS::}]
+
+There are certain 'gotchas' which you should be aware of before implementing this library in a production-bound project>
+
+1. For old-IE (versions 6,7,8), the library rides upon a classic IE bug which it uses to set the 'arbitrary' properties
+   on the DOM elements as polyfill methods. In view of this, certain objects are affected and they include the [attributes]
+   array for accessing DOM node attributes as a collection and the [getAttribute] method for retrieving the value of selected
+   attribute values.
+
+2. You may expreience JavaScript memory leaks as a result of caveat 1, However the effect has been put to a minimum by using
+    a hack for the 'arbitrary properties' in the currently loaded DOM.
+
+3. It is adviced to always link the JSutility library before any other third party library like "JQuery" or "Prototype" as it
+   may conflict with the former in unexpected ways.   
+------------------------------------------------------------------------------------------------------------------------
+                     THANKS FOR CHOOSING TO USE JSutillty!! DONT FORGET TO REPORT ANY BUGS
                                 - report all bugs via mail to cproscodedev@gmail.com -					 
-------------------------------------------------------------------------------------------------------------------------   
+------------------------------------------------------------------------------------------------------------------------					 
