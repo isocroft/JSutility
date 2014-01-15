@@ -170,6 +170,24 @@ function placeStrRegExps(obj, revsolidus){
 	   return output;
 }
 
+function getCSSProperty(sel, prp){
+   var res = null;
+   (typeof sel == "string") ? for(var j = 0; j < document.styleSheets.length; j++){
+              var cssRls = document.styleSheets[j].cssRules;
+	          if(!cssRls) cssRls = document.styleSheets[j].rules;
+	                for(var i = 0; i < cssRls.length; i++){
+	                        if(cssRls[i].selectorText == sel){
+			                    try{
+		                          res = cssRls[i].style.getPropertyValue(prp);		 
+								}catch(e){
+								   res = cssRls[i].style.getAttribute(Camelizr(prp, '-'));			
+								} 
+							}
+					}
+    } :  res = (sel.style.cssText.indexOf(prp) > -1) ?  sel.style[Camelizr(prp, '-')] : ((window.getComputedStyle)? window.getComputedStyle(sel,null)[prp] : ((sel.currentStyle)? sel.currentStyle[prp] : document.defaultView.getComputedStyle(sel,null)[prp]));
+ return res;	
+}
+
 function traverseDOMTreeByCallBack(node, callback, n_arr, root){
    root = root || document;
    if(n_arr.length > 0) n_arr = [];
@@ -367,11 +385,11 @@ var _handleQuery = function(aspect,url){
                var q = mode.split("&");
                 for(var k=0; k < q.length; k++){
                     if(q[k].indexOf(aspect) != -1){
-                        return decodeURIComponenet(q[k].substring(q[k].indexOf("=")+1));
+                        return decodeURIComponent(q[k].substring(q[k].indexOf("=")+1));
                     }
                 }
             }else{return;}
-} 
+}  
 
 var _setCookie = function (name, value, expires, secure) {
                 // the [expire] parameter should reflect the number of days for the cookie to be set
@@ -802,14 +820,17 @@ var _insertAfter = function (nel, cel) {
             } else { return null; }
 }
 
-var _previousElement = function (pe) {
-                if (!isElementNode(pe)) return null;
-
-                while (pe = pe.previousSibling) {
-                    if (pe.nodeType == 1) return n;
-                    if (pe.nodeType == 3) continue;
-                    if (pe.nodeType == 9) return n.ownerDocument;
+var _previousElement = function () {
+            var pr = this.parentNode, n = this.previousSibling;
+            if (pr.childNodes.length > 1){ 
+                while (n !== null) {
+                    if (n.nodeType == 1) return n;
+                    if (n.nodeType == 3) n = n.previousSibling;
+                    if (n.nodeType == 9) return n.children.item(0).ownerDocument;			
                 }
+				return null;
+			}
+            return pr.firstChild;			
 }
 
 var _isElementEmpty = function () {
@@ -817,13 +838,10 @@ var _isElementEmpty = function () {
 }
 
 var _hasStyle = function (sty) {
-            var esty = (document.getElementsByTagName("style")[0].innerHTML) ? document.getElementsByTagName("style")[0].innerHTML : document.getElementsByTagName("style")[0].innerText;
-            var srt, obj = this, isTrue = false;
-            var extSty = getCurrElementStyle(obj, sty);
-            if (sty.indexOf("-") > -1) {
-                srt = Camelizr(sty, "-");
-            }
-            return (obj.style.cssText.indexOf(sty) != -1 || extSty !== null || eval("obj.style." + srt) != "" || (esty.indexOf(obj.getAttribute("class") || obj.nodeName.toLowerCase() || obj.id) != -1)) ? true : false;
+            var srt, obj = this;
+            var esty = getCSSProperty(obj, sty);
+			      // eval("obj.style." + Camelizr(sry, '-'));
+            return (esty !== null)? true : false;
 }
 
 var _getSiblings = function () {
@@ -837,44 +855,35 @@ var _getSiblings = function () {
                 return (sib.length > 0) ? sib : null;
 }
 
-var _nextElement = function (ne) {
-                if (!isElementNode(ne)) return null;
-
-                while (ne = ne.nextSibling) {
-                    if (ne.nodeType == 1) return n;
-                    if (ne.nodeType == 3) continue;
+var _nextElement = function () {
+            var nr = this.parentNode, n = this.nextSibling;
+            if (nr.childNodes.length > 1){ 
+                while (n !== null) {
+                    if (n.nodeType == 1) return n;
+                    if (n.nodeType == 3) n = n.nextSibling;
+                    if (n.nodeType == 9) return n.children.item(0).ownerDocument;			
                 }
+				return null;
+			}
+            return nr.firstChild;	
 }
 
 var _getParents = function (par) {
-            var _this, allPar = getAllParents(this); // get all parents in context...
-            if (typeof (par) == "string") {
-                _this = window._qwery(par);
-            } else if (typeof (par) == "object") {
-                _this = par;
-            } else { return allPar; }
+            var d = 0, allPar = getAllParents(this), // get all parents in context...
+                _this = par || allPar;
 
-            if (!_this) { return null; }
-
-            if (allPar instanceof Array) {
-                if (_this instanceof Array || _this[0] !== undefined) { // capture NodeList object...
-                    for (var t = 0; t < allPar.length; t++) {
-                        for (var y = 0; y < _this.length; y++) {
-                            if (_this[y] === allPar[t]) {
-                                return _this[y];
-                            } 
-                        }
-                    }
-                } else {
-                    for (var d = 0; d < allPar.length; d++) { // capture Node object..
+            if (!_this) return null; 
+          
+            if(_this instanceof Array) { //  if {par} is null...
+                         return allPar;
+            } else {
+                    for (; d < allPar.length; d++){ // if not, search, qualify and return!
                         if (allPar[d] === _this) {
                             return allPar[d];
-                        } else {
-                            continue;
-                        }
+                        } 
                     }
-                }
-            } else { return; }
+            }
+           
 }
 
 var _contains = function (objt) {
