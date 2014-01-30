@@ -171,20 +171,30 @@ function placeStrRegExps(obj, revsolidus){
 }
 
 function getCSSProperty(sel, prp){
-   var res = null;
-   (typeof sel == "string") ? for(var j = 0; j < document.styleSheets.length; j++){
-              var cssRls = document.styleSheets[j].cssRules;
-	          if(!cssRls) cssRls = document.styleSheets[j].rules;
-	                for(var i = 0; i < cssRls.length; i++){
-	                        if(cssRls[i].selectorText == sel){
-			                    try{
-		                          res = cssRls[i].style.getPropertyValue(prp);		 
-								}catch(e){
-								   res = cssRls[i].style.getAttribute(Camelizr(prp, '-'));			
-								} 
-							}
-					}
-    } :  res = (sel.style.cssText.indexOf(prp) > -1) ?  sel.style[Camelizr(prp, '-')] : ((window.getComputedStyle)? window.getComputedStyle(sel,null)[prp] : ((sel.currentStyle)? sel.currentStyle[prp] : document.defaultView.getComputedStyle(sel,null)[prp]));
+  var res = null;
+  switch(typeof sel == "string"){
+   
+       case true:
+         for(var j = 0; j < document.styleSheets.length; j++){
+           var cssRls = document.styleSheets[j].cssRules;
+	      if(!cssRls) cssRls = document.styleSheets[j].rules;
+	        for(var i = 0; i < cssRls.length; i++){
+	          if(cssRls[i].selectorText == sel){
+                     try{
+		        res = cssRls[i].style.getPropertyValue(prp);		 
+		      }catch(e){
+			 res = cssRls[i].style.getAttribute(Camelizr(prp, '-'));			
+		      } 
+	           }
+	          
+	       }
+            } 
+     break;
+     case false:
+	        res = (sel.style.cssText.indexOf(prp) > -1) ?  sel.style[Camelizr(prp, '-')] : ((window.getComputedStyle)? window.getComputedStyle(sel,null)[prp] : ((sel.currentStyle)? sel.currentStyle[prp] : document.defaultView.getComputedStyle(sel,null)[prp]));
+     break;
+	 default:
+  } 
  return res;	
 }
 
