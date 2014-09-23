@@ -28,16 +28,7 @@
    **************************************************************************/
 
 
-/*!
- *  Creators     #### Codedev™ Team ####
- *  Date Created #### 30/01/2013 ####
- *  Author       #### Ifeora Okechukwu
- *  License      #### MIT License
- *  Copyright    #### Copyright (c) 2012-2014  All Rights Reserved
- *  ProjectName  #### Note2.js
- *  Version      #### 1.5 
- *  Description  #### The First Plus-Side Polyfill/Utility Library for JavaScript
- */
+
 
 /*== DEFINE BASIC JS/DOM ACCESS PATCHES  ==*/ 
 
@@ -354,7 +345,7 @@ if(!Function.prototype.bind){
                 return bound;
     };
 }
-/*== DECLARE NOTE2 FUTURES (Deffered) routine (will be moved to cdvTools)==*/
+/*== DECLARE NOTE2 FUTURES (Deferred) routine (will be moved to cdvTools)==*/
 
 var cdvTools={};
 
