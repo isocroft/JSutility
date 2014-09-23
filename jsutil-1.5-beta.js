@@ -28,9 +28,20 @@
    **************************************************************************/
 
 
+/*!
+ *  Creators     #### Codedev™ Team ####
+ *  Date Created #### 30/01/2013 ####
+ *  Author       #### Ifeora Okechukwu
+ *  License      #### MIT License
+ *  Copyright    #### Copyright (c) 2012-2014  All Rights Reserved
+ *  ProjectName  #### Note2.js
+ *  Version      #### 1.5 
+ *  Description  #### The First Plus-Side Polyfill/Utility Library for JavaScript
+ */
+
 /*== DEFINE BASIC JS/DOM ACCESS PATCHES  ==*/ 
 
-// many thanks to 
+
 if(!String.prototype.trim){
 String.prototype.trim = function(){
     var str = this;  
@@ -772,7 +783,7 @@ cdvTools.Futures = (function(){
 	              }else{ 
 				       if(_this.state < 3) _this.state = _futureStates.COMPLETE;
 					   (typeof func == "function" && (_this._which == which || (_this._which && which == "always")) && func.apply(_this, _this.cllbkObj)); //  complete the wait for all dependencies with "Futures" and short circuit the callbacks' call...   	  
-					   clearTimeout(o); // clean up {heap memory resources}  
+					   clearTimeout(o); // clean up {stack memory resources}  
 	                   if(_this._promise) _this._promise = null; // yet more clean up ...   
 					   return;
 	              }
@@ -939,10 +950,8 @@ window.js = (function(w, d, undefined){
 				return null;
 			}
 			
-		}
-		function getAllDescendants(obj) {
-			return obj.all ? obj.all : obj.getElementsByTagName('*');
-		}
+		     }
+		
 			 function insertAfter(prnt, nel, cel){ if (!(cdvTools.isElementNode(cel) && cdvTools.isElementNode(nel))) { return; } if (prnt.childNodes.length > 0 && cel.parentNode === prnt) { var nxt = cel.nextSibling; while(nxt.nodeType != 1 && nxt.parentNode===prnt) nxt = nxt.nextSibling; prnt.insertBefore(nel, nxt); }  };
 		     function checkArgs(args){ var actual = args.length; var expected = args.callee.length; if(actual != expected) throw 'error!!'; }
 			 function getAttrib(ob, a, isXML){ if(isXML){ var attr = getAttributeByName(ob, a);
@@ -955,8 +964,9 @@ window.js = (function(w, d, undefined){
 			} 
 
 			return (a === 'class') ? ob.className : (a === 'href' || a === 'src') ? ob.getAttribute(a, 2) : (a === "style") ? ob.style.cssText.toLowerCase() : (a === "for")? ob.htmlFor : ob.getAttribute(a); }
-	         function setAttrib(ob, a, vl, isXML){ if(isXML){ 
-                var attr = getAttributeByName(ob, a);
+	         function setAttrib(ob, a, vl, isXML){ 
+                if(isXML){ 
+                   var attr = getAttributeByName(ob, a);
 			
 			if (attr !== null) {
 				attr.nodeValue = vl;
@@ -966,7 +976,9 @@ window.js = (function(w, d, undefined){
 				ob.setAttributeNode(attr);
 			}
 			  return;
-			 } (a === 'class')? ob.className = vl : (a === 'href')? ob.href = vl : a === "style" ? ob.style.cssText += ''+vl : ob.setAttribute(a, vl); }
+			 } (a === 'class')? ob.className = vl : (a === 'href')? ob.href = vl : a === "style" ? ob.style.cssText += ''+vl : ob.setAttribute(a, vl);
+
+              }
              function classReg(cx){ return '(^|\\s+)' + cx + '(\\s+|$)'; }
 			 
 			 if(/*@cc_on !@*/false){ /* IE specific workaround code */ }
@@ -1166,10 +1178,10 @@ window.js = (function(w, d, undefined){
     }, 0)
     return $js
      },
-             so=a.concat,nt=a.indexOf,ft=(a)[sz],ask=function(st, con){
-			     var m;
-				 if((m = st.match(rAllSelector)) !== null){    
-			          return (m[2])? Qwery(st, con) : ft.call((con || d).getElementsByTagName(st)); // performance streak!!	  
+             so=a.concat,nt=a.indexOf,ft=(a)[sz],ask=function(st, con){ // [con] must be a DOM node (nodeType = 1 OR 9)
+			     var m = st.match(rAllSelector);
+				 if(m !== null){    
+			          return (m[2])? Qwery(st, con) : ft.call((con).getElementsByTagName(st)); // performance streak!!	  
                  }
 				 return null;
 			 },__q={},_cache={},_keys=[],vers="1.5",domAttr = function(node, str){
@@ -1585,6 +1597,7 @@ window.js = (function(w, d, undefined){
 			 offset:function(usz){ var g, x = this.selector; __q.collector = []; g = cdvTools.getCurrElementPos(x[0]); return g; },
 			 filter:function(args){ if(!args) return this; var x = this.selector; __q.collector = []; b.fn.each(x, function(i, item){ if(b.fn.isFunction(args)){ if(args.call(item, i)===true) __q.collector.push(item); } }); this.selector = (__q.collector.length && __q.collector);  return this; },
 			 wrap:function(htm, l){ var x = this.selector,_x=new Manip(); b.fn.each(x, function(i, item){ _x.wrapHTML(item, htm, l); }); _x=null; return this; },
+             wrapInside:function(htm, l){ var x = this.selector, _x = new Manip(); b.fn.each(x, function(i, item){ var f = _x.getChildren(item, false); b.fn.each(f, function(j, it){ _x.wrapHTML(it, htm, l); item.appendChild(it); });  }); _x=null;  return this; }
 			 find:function(obh){ if(b.fn.type(obh)!=st || !rAllSelector.test(obh)) return this; var x = this.selector; __q.collector = []; b.fn.each(x, function(i, item){ try{ __q.collector=b.fn.merge(__q.collector, Qwery(obh, item)); }catch(et){ /* do nothing */ }  }); this.selector=__q.collector; __q.collector=null; return this; },
 			 first:function(){ var x = this.selector; this.selector = [x[0]];  return this; },
 			 last:function(){ var x = this.selector; this.selector = [x[x.length-1]]; return this; },
@@ -1593,7 +1606,7 @@ window.js = (function(w, d, undefined){
 			 children:function(){ var x = this.selector,_x=new Manip(); __q.collector = []; b.fn.each(x, function(i, item){ __q.collector=b.fn.merge(__q.collector, ft.call(item.children)); }); this.selector =__q.collector; __q.collector=_x=null; return this; },
 			 lastchild:function(){ var x = this.selector,_x=new Manip(); __q.collector = []; b.fn.each(x, function(i, item){ __q.collector=b.fn.merge(__q.collector, _x.getEndNode(item, true)); }); this.selector=__q.collector; __q.collector=_x=null; return this; },
 			 replace:function(jod){ if(b.fn.type(jod)=="null") return this; var r, u, x =this.selector, _x=new Manip(); b.fn.each(x, function(i, item){ r = _x.normalise(jod, null, (x.length - 1 - i)), u = item.parentNode; b.fn.each(r, function(j, rep){  u && u.replaceChild(rep, item);  }) }); this.selector =[r]; _x=null; return this; },
-			 appendTo:function(obj){ var point, x = this.selector, _x=new Manip(), tip = _x.normalise(obj); b.fn.each(x, function(i, item){ point = _x.normalise(item, null, (x.length - 1 - i))[0];  b.fn.each(tip, function(j, app){ app.appendChild(point); });  }); _x=null; return this;  },
+			 appendTo:function(obj, con){ var point, x = this.selector, _x=new Manip(), tip = _x.normalise(obj, con); b.fn.each(x, function(i, item){ point = _x.normalise(item, null, (x.length - 1 - i))[0];  b.fn.each(tip, function(j, app){ app.appendChild(point); });  }); _x=null; return this;  },
 			 show:function(){ var x=this.selector; b.fn.each(x, function(i, item){ itme.style.display = "block" }); return this; },
 			 hide:function(){ var x=this.selector; b.fn.each(x, function(i, item){ itme.style.display = "none" }); return this; },
 			 clone:function(){ var x = this.selector,_x=new Manip(); __q.collector=[]; b.fn.each(x, function(i, item){  __q.collector.push(_x.cloneNode(item)); }); x=__q.collector; __q.collector=_x=null; return this; },
@@ -1603,9 +1616,9 @@ window.js = (function(w, d, undefined){
 			 prev:function(){ var pr, n, x = this.selector; __q.collector = []; b.fn.each(x, function(i, item){ pr = item.parentNode, n = item.previousSibling; if (n && pr.childNodes.length > 1){  while (n !== null) { if (n.nodeType == 1) break; if (n.nodeType == 3) n = n.previousSibling; if (n.nodeType == 9) n = d; }  } __q.collector.push(n); }); this.selector=__q.collector; return this; },
 			 remove:function(hold){ var x=this.selector; __q.collector = [];  b.fn.each(x, function(i, item){ __q.cleanEntity(ft.call(item.getElementsByTagName('*'))); __q.collector.push(item.parentNode.removeChild(item));   }); if(hold && hold === true){ this.selector =  __q.collector; } return this; },
 			 text:function(g){ var val = this.val, x=this.selector; if(!g){ return ('textContent' in x[0])? x[0].textContent : x[0].innerText ; } g = b.fn.type(g) == st && b.fn.stripTags(g); b.fn.each(x, function(i, item){ if(g){ if(rformType.test(domName(item))){ val(g); return; }  try{ item.textContent = g }catch(ed){ item.innerText = g; } } }); return this; },
-			 siblings:function(){ var x = this.selector, _x = new Manip(); __q.collector = [];  b.fn.each(x, function(i, item){  __q.collector = b.fn.merge(__q.collector, _x.getSiblings(item), false); }); x = __q.collector; __q.collector=_x=null; return this; },
-             html:function(hm){  var val = this.val, x = this.selector; if(hm===null) return x[0].innerHTML;  try{ hm = hm.trim();  b.fn.each(x, function(i, item){ __q.cleanEntity(ft.call(getAllDescendants(item))); if(rformType.test(domName(item))){
-				 val(hm);
+			 siblings:function(){ var x = this.selector, _x = new Manip(); __q.collector = [];  b.fn.each(x, function(i, item){  __q.collector = b.fn.merge(__q.collector, _x.getSiblings(item, false), false); }); x = __q.collector; __q.collector=_x=null; return this; },
+             html:function(hm){  var self = this, x = this.selector, _x = new Manip(); if(hm===null) return x[0].innerHTML;  try{ hm = hm.trim();  b.fn.each(x, function(i, item){ __q.cleanEntity(ft.call(_x.getAllDescendants(item))); if(rformType.test(domName(item))){
+				 self.val.call(self, hm);
 			     return;
 			}  item.innerHTML = hm; }); }catch(ex){ this.empty().append(hm);  } return this; },	
              popEvent:function(typ){ var g, u, x = this.selector; b.fn.each(x, function(i, item){ u = (b.fn.type(typ)==st)? typ: ''; g = Events(item); g.dispatchEvent(u);  }); return this; },			 
@@ -1767,14 +1780,14 @@ window.js = (function(w, d, undefined){
     };
 			 
 			 b.fn.inflate({'cache':{
-        add: add,
-        exists: exists,
-        purge: purge,
-        searchKeys: searchKeys,
-        get: get,
-        getKey: getKey,
-        getKeys: getKeys
-         }});
+               add: add,
+               exists: exists,
+               purge: purge,
+               searchKeys: searchKeys,
+               get: get,
+               getKey: getKey,
+               getKeys: getKeys
+             }});
 			 
 			 // prepare event delegation controller for Klascik.js  
 			 var Events = (function(){
@@ -1916,6 +1929,7 @@ window.js = (function(w, d, undefined){
 				 
 				 function ClassLister(doml){
 				    this.dom = doml;
+                    return this;
 				 };
 				 
 				 ClassLister.prototype = {
@@ -1946,8 +1960,8 @@ rProperNest = new RegExp("^("+sStartTag+""+sTagBits+"*>)(.*)(<\\/\\2>)$","i"),
 rSelfCloseTag = new RegExp("^"+sStartTag+"((area|br|col|img|input|hr)"+attribs+"*)"+sEndTag,"ig"),
 rTagName = new RegExp("^"+sStartTag+"([\\w:]+)"),
 
-fixInput = function( src, dest ) {
-var nodeName = dest.nodeName.toLowerCase();
+fixInputClone = function( src, dest ) {
+var nodeName = dest.nodeName.toLowerCase() == src.nodeName.toLowerCase() && src.nodeName.toLowerCase();
 
 // Fails to persist the checked state of a cloned checkbox or radio button.
 if ( nodeName === "input" && rcheckableType.test( src.type ) ) {
@@ -1956,6 +1970,8 @@ dest.checked = src.checked;
 // Fails to return the selected option to the default selected state when cloning options
 } else if ( nodeName === "input" || nodeName === "textarea" ) {
 dest.defaultValue = src.defaultValue;
+}else if(nodeName === "option"){
+    dest.defaultSelected = src.defaultSelected;
 }
 },
 setAtEnd = function(head, tail){
@@ -1963,8 +1979,8 @@ setAtEnd = function(head, tail){
   while(head.lastChild !== null){
      head = head.lastChild;
   }
-  cdvTools.isElementNode(head) && head.appendChild(tail); // make sure we are not dealing with a text node or any other node for that matter 
-  return top.lastChild;  
+  cdvTools.isElementNode(head) && head.appendChild(tail); // make sure we are  dealing only with an element node  
+  return top.lastChild; // OR return "head.appendChild(tail);"  
 },
 
 recoilElements = function(arr, last){
@@ -1979,10 +1995,20 @@ recoilElements = function(arr, last){
 	 }  
 },
 
+getChildNodes = function(setObj, callback, useStatic){
+    setObj = cdvTools.isElementNode(setObj) ? setObj.childNodes : []; // hoist
+    var all = [].slice.call(setObj), con = [],
+    frg = (useStatic)? d.createDocumentFragment() : [];
+    b.fn.each(all, function(k, nd){
+        return callback.call(frg, nd);
+    });
+    return [].concat.call(con, [].slice.call(frg.childNodes));
+}
+
 parseHTMLString = function(input, context, levelDeep, runScripts){
 
-var count = levelDeep,
-radix,
+var radix,
+count = +levelDeep,
 currentNodeStack = [],
 htmlChunkStack = [],
 textPointStack = [],
@@ -2006,7 +2032,7 @@ container = tmp; // remember the "top-est" element a.k.a the context
 
 
 // preprocessing stage!!
-input = input.replace(rHeadSpaces,'').replace(rTailSpaces,''); // remove leading and trailing spaces
+input = input.trim(); // remove leading and trailing spaces and \t and \b and \n and \r
 input = input.replace(rSelfCloseTag,"<$1></$2>"); // expand all self-close tag e.g <img>,<input> e.t.c
 
 if(isHTMLXML.test(input)){
@@ -2014,7 +2040,7 @@ if(isHTMLXML.test(input)){
 }
 
 n:
-for(;;){
+for(;;){ // infinite for loop
 
 while((radix = input.indexOf("<")) > -1){
 
@@ -2095,23 +2121,25 @@ if(htmlChunkStack.length){ // if we arrive here, it means that we still have "ht
   break; // end parse here!
 }
 
-} // end for loop
+} // end infinite for loop
 
 if(frag.textContext)
-  frag.textContent = ""; // clean orphans to prevent memory leaks!
+  frag.textContent = ""; // clean orphans (if any) to prevent memory leaks!
 
 
 return container;
+
 }; //end parseHTMLString
 
 
-      function Manip(){
-		  this.nodeCache = [];	   
-	  }
+    function Manip(){
+		  this.nodeCache = [];
+          return this;	   
+	}
 	  
 	   
 	        
-	   Manip.prototype.buildDOMNodes = function(input, context, levelDeep, runScripts){
+	Manip.prototype.buildDOMNodes = function(input, context, levelDeep, runScripts){
 	       // borrowing jquerys' logic for jQuery.parseHTML(data, [context , keepScripts]);
 	        if(!input || b.fn.type(input) !== st)
 			    return null;
@@ -2143,13 +2171,12 @@ return container;
 			
 			node = parseHTMLString(input, context, levelDeep, runScripts);
 			return node;
-	   };
+	};
 	   
-	   Manip.prototype.insert = function(itm, obj, fwhich){
-	      if(b.fn.type(obj)==st){
+	Manip.prototype.insert = function(itm, obj, fwhich){
+	   if(b.fn.type(obj)==st){
 		    if(rformType.test(domName(itm))) return;
-		
-		       try{ // IE 6 has some problem using [insertAdjacentHTML] on some tags like [rSpecials] tags
+		       try{ // IE 6 has some problem using [insertAdjacentHTML]/[insertAdjacentText] on some tags like [rSpecials] tags
 			       insertAdjData(itm, obj, fwhich, (isHTMLXML.test(obj)? 'HTML' : 'Text'));
 			       return;
 			   }catch(er){
@@ -2157,77 +2184,98 @@ return container;
 				     // deal accordingly with (table|tr|select|fieldset|tbody|thead|tfoot) tags
 				    }
 			   }
-		  }
-		  throw 'error';
-	   }
+		}
+		  throw 'MANIP_ERROR:: error occured';
+	}
 	   
 	  
 	   
-	   Manip.prototype.traverseRootByCallBack = function(callback, n_arr, root, node){
-   root = root || document;
-   if(n_arr.length > 0) n_arr = concat.apply([], n_arr); 
-   var children = root.childNodes, result, comments = [], text = [];
-   if(children !== null){
-      children = [].slice.call(children);
-      var u = 0, child;
-      for(;child = children[u]; u++){
-	    if(child.nodeType == 1){
-	       if(typeof callback == fb && (result = callback.call(child, node)) === true){
-		       n_arr.push(child);
-			   if(child.hasChildNodes())
-			     traverseDOMTreeByCallBack(node, callback, n_arr, child); 
-		   }else{ continue; }
-		}else{  
-		     if(child.nodeType == 8){  // we found a comment node!!
-			     comments.push(child.nodeValue);
+    Manip.prototype.deepTraverseByCallBack = function(callback, n_arr, root, targetNode){  // only element nodes involved! NOTE:  [targetNode] may be NULL | [targetNode] may also be used in comparing to [root] OR [child]  
+        root = root || d;
+       if(n_arr.length > 0) n_arr = [].concat.apply([], n_arr); // flatten array of DOM Nodes if the array is not empty
+       var children = root.childNodes, result, comments = [], text = [],u = 0, child;
+       if(children !== null){
+          children = [].slice.call(children);
+          for(;child = children[u]; u++){
+             if(targetNode && cdvTools.isElementNode(targetNode)){ // need to make sure to avoid : DOMException -> HierarchyRequestError (in some cases)
+	             if(child){ 
+	               if(typeof callback == fb && (callback.call(child, targetNode) === true)){ // [callback] must return literal true;
+		                n_arr.push(child);
+		           }
+                 }  
+		     }else{  // If current child is not an element node, append content to the right structure and move to the next child in the [children] array 
+		          if(child.nodeType == 8){  // we found a comment node!!
+			            comments.push(child.nodeValue);
+		          } 
+			      if(child.nodeType == 3){ // we found a text node!!
+			            text.push(child.nodeValue);
+			      }
+			      if(child.nodeType == 10){ // we found a doctype node!!
+			            break;
+			      } 
 		     } 
-			 if(child.nodeType == 3){ // we found a text node!!
-			      text.push(child.nodeValue);
-			 }
-			 if(child.nodeType == 10){ // we found a doctype node!!
-			      continue;
-			 }
-			continue; 
-		 } // If current child is not an element node, append content to the right structure and move to the next child in the [children] array 
-	 }
-   }else{ 
-        if(root.nodeType == 1){
-             if(root === node) n_arr.push(root);
-			 return n_arr;
-        }else{ return null; } 
-   }
-};
+             if(child.hasChildNodes()) // desend only when we have children to desend to
+                 deepTraverseByCallBack(callback, n_arr, child, targetNode); // recurse and descend (if possible)!
+	      }
+        }else{ 
+             if(root.nodeType == 1){
+                 n_arr.push(root);
+             }   
+        }
+         return n_arr; // base case scenario!
+   };
 
 
    Manip.prototype.getParents = function(obj){
-       var node, d = []; function loadArrayWithParent(_obj, _d){
-	   if((node = _obj) !== null && node.nodeType==1){  // just make sure we don't reach the [HTMLDocument] in recursive ascent
-	          _d.push(node); 
-			  return loadArrayWithParent(_obj.parentNode, _d); 
-	   }else{ 
-	          return d.splice(0, d.length-1); 
-	   } }; 
+       var node, d = []; 
+        function loadArrayWithParent(_obj, _d){
+	         if((node = _obj) !== null && node.nodeType==1){  // just make sure we don't reach the [HTMLDocument] node in recursive ascent
+	             _d.push(node); 
+			     return loadArrayWithParent(_obj.parentNode, _d);  // recurse and acsend!
+	         }else{ 
+	          return d.splice(0, d.length-1); // base case scenario!
+	         } 
+        }; 
 	   return loadArrayWithParent(obj.parentNode, d); 
    };
        
-   Manip.prototype.getSiblings= function(obj, c){ 
-          var all = [].slice.call(obj.parentNode.children), sib = [];
-		  b.fn.each(all, function(k, nd){
-       		  if(nd !== obj) sib.unshift(nd); 
-		  }); 
+   Manip.prototype.getSiblings= function(obj, c){
+          var ob = obj.parentNode,
+		  sib = getChildNodes(ob, function(nd){
+       		  if(nd !== obj){ 
+                 if(c && cdvTools.isElementNode(nd)){
+                       this.push(nd); 
+                       return;
+                 }
+                 this.push(nd);
+              } 
+		  }, false); 
 		  return sib;
    };
+
+   Manip.prototype.getChildren = function(obj, c){ 
+       var ob = obj,
+       cldrn = getChildNodes(ob, function(nd){
+             if(c && cdvTools.isElementNode(nd)){
+               this.appendChild(nd);
+               return;
+             }
+               this.appendChild(nd);
+           }
+       }, true);
+       return cldrn;
+   }
 			 
    Manip.prototype.wrapHTML = function(node, html, level){
         if(!rProperNest.test(html)) throw 'MANIP_ERROR:: input not accepted!!';
 		level = level || false;
 		var res, p = !cdvTools.isNodeDisconnected(node) && node.parentNode, // check if the node is well attached the DOM
-		rep = d.createElement("a"); // temporary node placeholder
+		rep = d.createElement("a"); // temporary node placeholder (keep it for later reference)
 		if(p===false) throw "Wahala dey ohh!!";
-		p.replaceChild(rep, node); // now, remove the node (if possible or throw an exception)
+		p.replaceChild(rep, node); // now, remove the node (if possible or throw a JS runtime exception) - na u sabi!
 		res = parseHTMLString(html, p, level); // turn the html string to its node(s) equivalent 
 		p.replaceChild(setAtEnd(res, node), rep); // push back to the DOM
-		res=rep=null;
+		res=rep=null; // just in case the GC is slow!
       	return true;
    };
    
@@ -2241,15 +2289,32 @@ return container;
 	      while(stub && stub.nodeType!=1){
 		     stub = (isLast)? stub.previousSibling : stub.nextSibling; 
 		  }	  
-	       //throw 'MANIP_ERROR:: impossible operation on object';
 	   }
 	   return [stub];
    };
    
    Manip.prototype.cloneNode = function(node){
-     var clone = node.cloneNode(true);
-	 fixInput(node, clone);
+     var clone;
+     try{
+        clone = node.cloneNode(true); // deep cloning causes frequent crashes in Safari 1.3 - 2.0
+      }catch(ex){ 
+          // this is the workaround!!
+          clone = node.cloneNode(false);  // make a superficial clone!! Firefox & Opera complains if the "false" argument is missing
+          this.deepTraverseByCallBack(function(alpha){ // now take it deep!
+                                          var cl = this.cloneNode(); 
+                                          if(alpha.appendChild(cl)){
+                                            return true;
+                                          } 
+                                          return false;
+                                      }, [], node, 
+          clone); 
+      }
+	 fixInputClone(node, clone);
 	 return clone;
+   }
+
+   Manip.prototype.getAllDescendants = function(obj) {
+        return obj.all ? obj.all : obj.getElementsByTagName('*');  // return all with no parent->child order
    }
    
    Manip.prototype.normalise = function(node, context, clone) {
@@ -2257,24 +2322,30 @@ return container;
 	
 	if(!!context){ // firstly, we need to normalise [context]
 	    if(b.fn.type(context) == st){
-	       if(rAllSelector.test(context)) context = Qwery(con)[0];
+	       if(rAllSelector.test(context)) context = Qwery(context)[0];
 	    }else{ 
 	       if(!cdvTools.isElementNode(context)) context = null;
 		}
-	} 
+	}else{
+        context = d; // if there is no context OR context=null, use the default context => [HTMLDocument]
+    } 
 	
-	
-    if (b.fn.type(node) == st){ // then, normalise [node]
-      if(!isHTMLXML.test(node)){	
-	     ret = ask(node, context);
-		 if(ret) return ret;
-	  }else{	
-		ret = this.buildDOMNodes(node, context);
-		return (ret.hasChildNodes() ? ft.call(ret === context? [ret] : ret.children) : [ret]); //TODO: need to scrutinize this algos more
-	  }
-	}  
+	if(context === null) throw 'MANIP_ERROR:: immpossible operation on object'; // dead end - if context is null
+
+    // now, normalise [node] - depending...
+        if (b.fn.type(node) == st){ 
+            if(!isHTMLXML.test(node)){	// if not a HTML string
+	            ret = ask(node, context);
+		       if(ret) return ret;
+	       }else{	// if an HTML string
+		        ret = this.buildDOMNodes(node, context);
+		        return (ret.hasChildNodes() ? ft.call(ret === context? [ret] : ret.children) : [ret]); 
+	         }
+	    }
+  
+
     if (cdvTools.isElementNode(node)) node = [ node ];
-    if (clone){ // clone is a numeric or non-null command such that clone=0/clone=null will mean don't clone anymore!
+    if (clone){ // clone is a numeric or non-null command such that clone=0 OR clone=null will mean don't clone anymore!
       ret = [] // don't change original array
       for (i = 0, l = node.length; i < l; i++) ret[i] = this.cloneNode(node[i])
       return ret;
@@ -2690,7 +2761,7 @@ return container;
 			
 			 addInLine(w, 'load', function(e){
 			  if(!_isLocal){ 
-	                    _keys = b.fn.cookies.readCookie("__js_cache_keys");
+	            _keys = b.fn.cookies.readCookie("__js_cache_keys");
 				if(_keys ){
 				   _keys = _keys.split(",");
 		           b.fn.each(_keys, function(j, ky){
@@ -2718,6 +2789,6 @@ return container;
 			 /* end */ 
 			 return $_;
  }(this, this.document));		 
-		  
+		
 
    
