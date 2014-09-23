@@ -1,4 +1,4 @@
-Copyright 2013 @cdvlabs This library is released under the GPL License http://www.opensource.org/licenses/GPL-2.0.php
+Copyright 2013-2014 @cdvlabs This library is released under the GPL License http://www.opensource.org/licenses/GPL-2.0.php
 Release Date: 17/09/2013
 JavaScript API's contained in this library (JSKlascik - new project name) 
 --------------------------------------------------------------------------------------------------------------------
@@ -7,9 +7,9 @@ JavaScript API's contained in this library (JSKlascik - new project name)
 
 ::[{Util Routines}]
 
--->inflate(obj, [obj2]);
--->ajax(ajaxOpts);
--->deflate();
+-->inflate(obj, [obj2]); -- adds properties of [obj] to [obj2] OR [js]
+-->ajax(ajxOpts); -- performs basic ajaxy functions with parameters [ajxOpts]
+-->deflate(); 
 -->merge();
 -->evalScript(scrp);
 -->isEmptyObj(obj);
