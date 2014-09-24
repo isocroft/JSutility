@@ -24,10 +24,32 @@ JavaScript API's contained in this library (JSKlascik - new project name)
 -->each(arr, fn);
 -->clone(obj);
 
+::[{Util Objects}]
+
+-->cookies 
+  -->setCookie();
+  -->unsetCookie();
+  --readCookie();
+-->cache
+  -->add();
+  -->exists();
+
 
 ::[{DOM Routines}]
 
 -->load(fn);
+-->atReady();
+-->ready();
+-->css();
+-->val();
+-->offCss();
+-->wrapEachInside(htm, lvl);
+-->wrapInside(htm, lvl);
+-->addClass();
+-->removeClass();
+-->toggleClss();
+-->addEvent();
+-->removeEvent();
 -->wrap(htm, lvl);
 -->empty(undefined);
 -->popEvent(typ);
