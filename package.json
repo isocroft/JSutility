@@ -1,0 +1,40 @@
+{
+  "name":"JSutiltiy",
+  "version":"1.6.0",
+  "description":"The first plus-side polyfill JavaScript library for DOM manipulations and DOM eventing",
+  "keywords":[
+     "utilitiy",
+     "polyfill",
+     "plus-side"
+  ],
+  "devDependencies":{
+     "es5-shim":"~0.4"
+  },
+  "contributors":[
+      "John Resig >> (http://ejohn.org)",
+      "Emmy Steven",
+      "Eirick Backer >> (http://kirie.no)",
+      "Dustin Diaz >> (http://dustindiaz.com)", 
+      "Zoltan Hawryluk >> (http://useragentman.com)",
+      "Diego Perini >> (http://javascript.nwbox.com)",
+      "Lea Verou >> (http://lea.verou.me)",
+      "Douglas CrockFord >> (http://javascript.crockford.com)"
+  ],
+  "licences":{
+     "type":"GPL"
+  },
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/isocroft/JSutility"
+  },
+  "author":{
+     "name":"Ifeora Okechukwu",
+     "mail":"isocroft@gmail.com"
+  },
+  "bugs":{
+    "mail":"isocroft@gmail.com",
+     "issues":"https://github.com/isocroft/JSutility/issues"
+  },
+  "homepage":"https://github.com/isocroft/JSutility",
+  "main":"./JSutil-1.5-beta.js"
+}
