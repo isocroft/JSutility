@@ -1,4 +1,4 @@
-{JSutil-0.8-beta for all browsers}
+{JSutil-1.5-beta for all browsers}
 
 {Script Developers : CodeDev Team} {http://cproscodedev.com.ng}
 
